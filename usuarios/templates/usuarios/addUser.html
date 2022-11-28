@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Add - User
+{% endblock %}
+
+{% block main %}
+   
+   <div class="container">
+        <br>
+        <div class="row">
+            <div class="col">
+                <h1>Add User</h1>
+            </div>
+            <div class="col">
+                <a href="{% url 'index'%}" class="btn btn-success" >Return home</a>
+            </div>
+        </div>
+        <br>
+        <form  action="" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-auto">
+                    <labe>User:</labe>
+                </div>
+                <div class="col-md-auto">
+                    <input type="text" name="user" class="form-control">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-auto">
+                    <labe>Name:</labe>
+                </div>
+                <div class="col-md-auto">
+                    <input type="text" name="name" class="form-control">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-auto">
+                    <labe>Sex:</labe>
+                </div>
+                <div class="col-md-auto">
+                    <input type="text" name="sex" class="form-control">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-success">Add user</button>
+                </div>
+            </div>
+        </form>
+   </div>
+{% endblock %}

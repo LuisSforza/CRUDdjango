@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    User List
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <br>
+        <h1>User list</h1>
+        <br>
+        <form  action="" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-auto">
+                    <h3>Search for a user:</h3>
+                </div>
+                <div class="col-md-auto" >
+                    <input type="text" class="form-control" name="user">
+                </div>
+                <div class="col">
+                    <input class="btn btn-primary" type="submit" value="Search">
+                </div>
+                <div class="col">
+                    <a href="{% url 'index'%}" class="btn btn-success" >All user</a>
+                </div>
+                <div class="col">
+                    <a href="{% url 'addUser'%}" class="btn btn-success" >Add user</a>
+                </div>
+            </div>    
+        </form>
+        <br>
+        <div class="">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">User</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Sex</th>
+                      <th scope="col">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for object in object_list %}
+
+                        <tr>
+                            <td>{{object.pk}}</td>
+                            <td>{{object.user}}</td>
+                            <td>{{object.name}}</td>
+                            <td>{{object.sex}}</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-auto">
+                                        <a class="btn btn-danger" href="{% url 'deleteUser' object.pk %}">Delete</a>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <a class="btn btn-success" href="{% url 'updateUser' object.pk %}">Update</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <style>
+            .mensaje{
+                background-color: rgba(0,187,45, 0.5);
+                padding-top: 15px;
+                padding-bottom: 15px;
+                padding-left: 15px;
+                color:white;
+                border-radius: 10px;
+            }
+        </style>
+        <!--Se establece el mensaje de error al ingresar datos-->
+        {% if messages%}
+                {% for msg in messages %}
+                    <div class="row mensaje">
+                        <div class="col-md-auto">
+                            <h3>{{msg}}</h3>
+                        </div>
+                    </div>
+                {% endfor %}
+        {% endif %}     
+    </div>
+{% endblock %}
